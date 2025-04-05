@@ -111,8 +111,8 @@ async function requestDeviceOrientation(){
     const ua = navigator.userAgent.toLowerCase();
     if ( !(/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua))){
         gravityY = -9.81;
-        startTracking();
-        return;
+        paused = false;
+        document.getElementById('overlay')?.remove();
     }
 
     if (typeof DeviceOrientationEvent != 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function'){
@@ -140,10 +140,9 @@ async function requestDeviceOrientation(){
   
 function startTracking() {
     paused = false;
-    document.getElementById('overlay')?.remove(); // optional chaining for safety
+    document.getElementById('overlay')?.remove(); 
   
     window.addEventListener('deviceorientation', (event) => {
-      // Convert degrees to radians
       const beta = event.beta * (Math.PI / 180);   // front-back tilt
       const gamma = event.gamma * (Math.PI / 180); // left-right tilt
   
