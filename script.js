@@ -23,8 +23,8 @@ let gravityX = 0;
 let gravityY = -9.81;
 
 parameters = {
-    "border-restitution": 0.8,
-    "self-restitution": 0.8
+    "border-restitution": 0.5,
+    "self-restitution": 0.5
 }
 
 function resizeCanvas() {
