@@ -1,3 +1,7 @@
+/**
+ * The JavaScript code creates a particle simulation on an HTML canvas with gravity and collision
+ * interactions, supporting both mouse and device orientation input.
+ */
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -59,7 +63,7 @@ function update(currentTime){
         let particle = particles[i];
 
         particle.addForce(gravityX, gravityY);
-        particle.update(delta);
+        particle.update(delta * 10);
         particle.borderCollisions(width, height, parameters["border-restitution"]);
     }
 
@@ -87,9 +91,9 @@ function update(currentTime){
 
     if (isMouseDown){
         accumulated += delta;
-        if (accumulated >= 50){
+        if (accumulated >= 0.05){
             particles.push(new Particle(mousePos.x, mousePos.y, Math.random() * (8 - 3) + 3, getRandomColor()));
-            accumulated -= 50;
+            accumulated -= 0.05;
         }
     }
     }
@@ -107,12 +111,17 @@ function getRandomColor() {
 window.addEventListener('resize', resizeCanvas);
 
 document.getElementById('overlay').addEventListener('click', async () => { await requestDeviceOrientation(); });
-async function requestDeviceOrientation(){
+
+function isDesktop() {
     const ua = navigator.userAgent.toLowerCase();
-    if ( !(/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua))){
-        gravityY = -9.81;
+    return !(/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua));
+  }
+  
+async function requestDeviceOrientation(){
+    if (isDesktop()){
         paused = false;
-        document.getElementById('overlay')?.remove();
+        document.getElementById('overlay')?.remove(); 
+        return;
     }
 
     if (typeof DeviceOrientationEvent != 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function'){
@@ -140,7 +149,7 @@ async function requestDeviceOrientation(){
   
 function startTracking() {
     paused = false;
-    document.getElementById('overlay')?.remove(); 
+    document.getElementById('overlay')?.remove();
   
     window.addEventListener('deviceorientation', (event) => {
       const beta = event.beta * (Math.PI / 180);   // front-back tilt
