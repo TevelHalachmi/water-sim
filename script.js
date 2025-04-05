@@ -111,6 +111,7 @@ async function requestDeviceOrientation(){
     const ua = navigator.userAgent.toLowerCase();
     if ( !(/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua))){
         gravityY = -9.81;
+        startTracking();
         return;
     }
 
