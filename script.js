@@ -51,7 +51,7 @@ function start(){
 function update(currentTime){
     ctx.clearRect(0, 0, width, height);
 
-    const delta = currentTime - lastTime;
+    const delta = (currentTime - lastTime) / 1000;
     lastTime = currentTime;
 
     if (!paused){
