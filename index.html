@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tevel Gever</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="overlay" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.9);
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1000;
+    cursor: pointer;
+">
+  Tap to enable device rotation
+</div>
+<div id="tevel-gever" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    scale: 2;
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 999;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;    
+    -ms-user-select: none;   
+">
+  Tevel Gever
+</div>
+
+    <canvas id="myCanvas"></canvas>
+
+    <script src="particle.js"></script>
+    <script src="script.js"></script> 
+</body>
+</html>
