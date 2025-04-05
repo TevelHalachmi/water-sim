@@ -108,6 +108,12 @@ window.addEventListener('resize', resizeCanvas);
 
 document.getElementById('overlay').addEventListener('click', async () => { await requestDeviceOrientation(); });
 async function requestDeviceOrientation(){
+    const ua = navigator.userAgent.toLowerCase();
+    if ( !(/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua))){
+        gravityY = -9.81;
+        return;
+    }
+
     if (typeof DeviceOrientationEvent != 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function'){
         // iOs 13+
         try{
